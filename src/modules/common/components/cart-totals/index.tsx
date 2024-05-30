@@ -1,9 +1,9 @@
 "use client"
 
 import { formatAmount } from "@lib/util/prices"
-import { InformationCircleSolid } from "@medusajs/icons"
+//import { InformationCircleSolid } from "@medusajs/icons"
 import { Cart, Order } from "@medusajs/medusa"
-import { Tooltip } from "@medusajs/ui"
+//import { Tooltip } from "@medusajs/ui"
 import React from "react"
 
 type CartTotalsProps = {
@@ -34,9 +34,9 @@ const CartTotals: React.FC<CartTotalsProps> = ({ data }) => {
         <div className="flex items-center justify-between">
           <span className="flex gap-x-1 items-center">
             Subtotal
-            <Tooltip content="Cart total excluding shipping and taxes.">
+            {/*<Tooltip content="Cart total excluding delivery fee.">
               <InformationCircleSolid color="var(--fg-muted)" />
-            </Tooltip>
+            </Tooltip>*/}
           </span>
           <span data-testid="cart-subtotal" data-value={subtotal || 0}>
             {getAmount(subtotal)}
@@ -55,17 +55,17 @@ const CartTotals: React.FC<CartTotalsProps> = ({ data }) => {
           </div>
         )}
         <div className="flex items-center justify-between">
-          <span>Shipping</span>
+          <span>Delivery Fee</span>
           <span data-testid="cart-shipping" data-value={shipping_total || 0}>
             {getAmount(shipping_total)}
           </span>
         </div>
-        <div className="flex justify-between">
+        {/*<div className="flex justify-between">
           <span className="flex gap-x-1 items-center ">Taxes</span>
           <span data-testid="cart-taxes" data-value={tax_total || 0}>
             {getAmount(tax_total)}
           </span>
-        </div>
+        </div>*/}
         {!!gift_card_total && (
           <div className="flex items-center justify-between">
             <span>Gift card</span>

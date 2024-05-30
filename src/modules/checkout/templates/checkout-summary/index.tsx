@@ -1,7 +1,7 @@
 import { Heading } from "@medusajs/ui"
 
 import ItemsPreviewTemplate from "@modules/cart/templates/preview"
-import DiscountCode from "@modules/checkout/components/discount-code"
+//import DiscountCode from "@modules/checkout/components/discount-code"
 import CartTotals from "@modules/common/components/cart-totals"
 import Divider from "@modules/common/components/divider"
 import { cookies } from "next/headers"
@@ -33,9 +33,9 @@ const CheckoutSummary = async () => {
         <Divider className="my-6" />
         <CartTotals data={cart} />
         <ItemsPreviewTemplate region={cart?.region} items={cart?.items} />
-        <div className="my-6">
+        {/*<div className="my-6">
           <DiscountCode cart={cart} />
-        </div>
+        </div>*/}
       </div>
     </div>
   )

@@ -1,3 +1,5 @@
+import Image from 'next/image'
+import logo from '@modules/common/icons/logo.png'
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import ChevronDown from "@modules/common/icons/chevron-down"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
@@ -25,12 +27,28 @@ export default function CheckoutLayout({
             </span>
           </LocalizedClientLink>
           <LocalizedClientLink
-            href="/"
-            className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
-            data-testid="store-link"
-          >
-            Medusa Store
-          </LocalizedClientLink>
+              href="/"
+              className="txt-compact-xlarge-plus hover:text-ui-fg-base flex items-center"
+              data-testid="nav-store-link"
+            >
+              <Image
+                src={logo.src}
+                alt="Logo"
+                height={50}
+                width={50}
+                className="object-cover"
+              />
+            </LocalizedClientLink>
+
+            <LocalizedClientLink
+              href="/"
+              className="txt-compact-xlarge-plus hover:text-ui-fg-base flex items-center"
+              data-testid="nav-store-link"
+            >
+
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
+              Cookies N' Chill
+            </LocalizedClientLink>
           <div className="flex-1 basis-0" />
         </nav>
       </div>
