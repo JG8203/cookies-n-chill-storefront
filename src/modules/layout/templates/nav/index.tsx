@@ -1,4 +1,7 @@
 import { Suspense } from "react"
+import Image from 'next/image'
+import logo from '@modules/common/icons/logo.png'
+import user_pic from '@modules/common/icons/user_pic.png'
 
 import { listRegions } from "@lib/data"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
@@ -11,56 +14,123 @@ export default async function Nav() {
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
       <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
-        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
-          <div className="flex-1 basis-0 h-full flex items-center">
-            <div className="h-full">
-              <SideMenu regions={regions} />
-            </div>
-          </div>
+        <nav
+          className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular bg-#FFFBED">
+          <div className="flex items-center h-full gap-2">
 
-          <div className="flex items-center h-full">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
+              className="txt-compact-xlarge-plus hover:text-ui-fg-base flex items-center"
               data-testid="nav-store-link"
             >
-              Medusa Store
+              <Image
+                src={logo.src}
+                alt="Logo"
+                height={50}
+                width={50}
+                className="object-cover"
+              />
             </LocalizedClientLink>
+
+            <LocalizedClientLink
+              href="/"
+              className="txt-compact-xlarge-plus hover:text-ui-fg-base flex items-center"
+              data-testid="nav-store-link"
+            >
+
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
+              Cookies N' Chill
+            </LocalizedClientLink>
+
           </div>
 
-          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-            <div className="hidden small:flex items-center gap-x-6 h-full">
-              {process.env.FEATURE_SEARCH_ENABLED && (
-                <LocalizedClientLink
-                  className="hover:text-ui-fg-base"
-                  href="/search"
-                  scroll={false}
-                  data-testid="nav-search-link"
-                >
-                  Search
-                </LocalizedClientLink>
-              )}
-              <LocalizedClientLink
-                className="hover:text-ui-fg-base"
-                href="/account"
-                data-testid="nav-account-link"
-              >
-                Account
-              </LocalizedClientLink>
-            </div>
-            <Suspense
-              fallback={
-                <LocalizedClientLink
-                  className="hover:text-ui-fg-base flex gap-2"
-                  href="/cart"
-                  data-testid="nav-cart-link"
-                >
-                  Cart (0)
-                </LocalizedClientLink>
-              }
+
+          {/*<div className="flex-1 basis-0 h-full flex items-center">*/}
+          {/*  <div className="h-full">*/}
+          {/*    <SideMenu regions={regions} />*/}
+          {/*  </div>*/}
+          {/*</div>*/}
+
+
+          <div className="flex items-center h-full gap-10">
+            <LocalizedClientLink
+              className="hover:text-ui-fg-base"
+              href="/"
+              data-testid="nav-store-link"
             >
-              <CartButton />
-            </Suspense>
+              Home
+            </LocalizedClientLink>
+
+
+            <LocalizedClientLink
+              className="hover:text-ui-fg-base"
+              href="/store"
+              data-testid="nav-store-link"
+            >
+              Shop
+            </LocalizedClientLink>
+
+            <LocalizedClientLink
+              className="hover:text-ui-fg-base"
+              href="/reviews"
+              data-testid="nav-reviews-link"
+            >
+              Reviews
+            </LocalizedClientLink>
+
+            <LocalizedClientLink
+              className="hover:text-ui-fg-base"
+              href="/about-us"
+              data-testid="nav-about-us-link"
+            >
+              About Us
+            </LocalizedClientLink>
+
+
+            <LocalizedClientLink
+              className="hover:text-ui-fg-base"
+              href="/account"
+              data-testid="nav-account-link"
+            >
+              <Image
+                src={user_pic.src}
+                alt="Logo"
+                height={40}
+                width={40}
+                className="object-cover"
+              />
+            </LocalizedClientLink>
+
+            {/*This part is the cart that comes with medusa front end should be changed */}
+            <div className="flex items-center">
+              <div className="hidden small:flex items-center h-full">
+                {process.env.FEATURE_SEARCH_ENABLED && (
+                  <LocalizedClientLink
+                    className="hover:text-ui-fg-base"
+                    href="/search"
+                    scroll={false}
+                    data-testid="nav-search-link"
+                  >
+                    Search
+                  </LocalizedClientLink>
+                )}
+              </div>
+              <Suspense
+                fallback={
+                  <LocalizedClientLink
+                    className="hover:text-ui-fg-base flex gap-2"
+                    href="/cart"
+                    data-testid="nav-cart-link"
+                  >
+                    Cart (0)
+                  </LocalizedClientLink>
+                }
+              >
+                <CartButton />
+              </Suspense>
+          </div>
+
+
           </div>
         </nav>
       </header>
