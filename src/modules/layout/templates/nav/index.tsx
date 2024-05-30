@@ -15,7 +15,7 @@ export default async function Nav() {
     <div className="sticky top-0 inset-x-0 z-50 group">
       <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
         <nav
-          className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular bg-#FFFBED">
+          className="content-container text-sm font-bold text-ui-fg-subtle flex items-center justify-between w-full h-full  bg-#FFFBED">
           <div className="flex items-center h-full gap-2">
 
             <LocalizedClientLink
@@ -34,7 +34,7 @@ export default async function Nav() {
 
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus hover:text-ui-fg-base flex items-center"
+              className=" hover:text-ui-fg-base flex items-center font-neuton font-bold text-2xl"
               data-testid="nav-store-link"
             >
 
@@ -54,7 +54,7 @@ export default async function Nav() {
 
           <div className="flex items-center h-full gap-10">
             <LocalizedClientLink
-              className="hover:text-ui-fg-base"
+              className="hover:text-ui-fg-base font-raleway uppercase"
               href="/"
               data-testid="nav-store-link"
             >
@@ -63,7 +63,7 @@ export default async function Nav() {
 
 
             <LocalizedClientLink
-              className="hover:text-ui-fg-base"
+              className="hover:text-ui-fg-base font-raleway uppercase"
               href="/store"
               data-testid="nav-store-link"
             >
@@ -71,7 +71,7 @@ export default async function Nav() {
             </LocalizedClientLink>
 
             <LocalizedClientLink
-              className="hover:text-ui-fg-base"
+              className="hover:text-ui-fg-base font-raleway uppercase"
               href="/reviews"
               data-testid="nav-reviews-link"
             >
@@ -79,7 +79,7 @@ export default async function Nav() {
             </LocalizedClientLink>
 
             <LocalizedClientLink
-              className="hover:text-ui-fg-base"
+              className="hover:text-ui-fg-base font-raleway uppercase"
               href="/about-us"
               data-testid="nav-about-us-link"
             >
@@ -88,7 +88,7 @@ export default async function Nav() {
 
 
             <LocalizedClientLink
-              className="hover:text-ui-fg-base"
+              className="hover:text-ui-fg-base font-raleway uppercase"
               href="/account"
               data-testid="nav-account-link"
             >
@@ -106,7 +106,7 @@ export default async function Nav() {
               <div className="hidden small:flex items-center h-full">
                 {process.env.FEATURE_SEARCH_ENABLED && (
                   <LocalizedClientLink
-                    className="hover:text-ui-fg-base"
+                    className="hover:text-ui-fg-base font-raleway uppercase"
                     href="/search"
                     scroll={false}
                     data-testid="nav-search-link"
@@ -128,7 +128,7 @@ export default async function Nav() {
               >
                 <CartButton />
               </Suspense>
-          </div>
+            </div>
 
 
           </div>
