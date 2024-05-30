@@ -174,10 +174,7 @@ const Shipping: React.FC<ShippingProps> = ({
                     amount: cart.shipping_methods[0].price,
                     region: cart.region,
                     includeTaxes: false,
-                  })
-                    .replace(/,/g, "")
-                    .replace(/\./g, ",")}
-                  )
+                  })})
                 </Text>
               </div>
             )}
