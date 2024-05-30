@@ -34,6 +34,8 @@ module.exports = {
           80: "#1F2937",
           90: "#111827",
         },
+        heroBeige: "#F5DFBD",
+        brownColor: "#955921",
       },
       borderRadius: {
         none: "0px",
@@ -69,6 +71,9 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
+        raleway: ['Raleway', 'sans-serif'],
+        niconne: ['Niconne', 'cursive'],
+        neuton: ['Neuton', 'serif'],
       },
       keyframes: {
         ring: {
