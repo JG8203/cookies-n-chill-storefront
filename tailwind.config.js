@@ -36,6 +36,8 @@ module.exports = {
         },
         heroBeige: "#F5DFBD",
         brownColor: "#955921",
+        darkerBeige: "#EFCE9C",
+        darkPink: "#F38989",
       },
       borderRadius: {
         none: "0px",
