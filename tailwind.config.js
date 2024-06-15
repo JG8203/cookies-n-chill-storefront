@@ -12,12 +12,34 @@ module.exports = {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
     },
     extend: {
+      transitionProperty: {
+        width: "width margin",
+        height: "height",
+        bg: "background-color",
+        display: "display opacity",
+        visibility: "visibility",
+        padding: "padding-top padding-right padding-bottom padding-left",
+      },
       colors: {
+        grey: {
+          0: "#FFFFFF",
+          5: "#F9FAFB",
+          10: "#F3F4F6",
+          20: "#E5E7EB",
+          30: "#D1D5DB",
+          40: "#9CA3AF",
+          50: "#6B7280",
+          60: "#4B5563",
+          70: "#374151",
+          80: "#1F2937",
+          90: "#111827",
+        },
+        heroBeige: "#F5DFBD",
+        brownColor: "#955921",
+        darkerBeige: "#EFCE9C",
+        darkPink: "#F38989",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -53,9 +75,21 @@ module.exports = {
         },
       },
       borderRadius: {
+        none: "0px",
+        soft: "2px",
+        base: "4px",
+        rounded: "8px",
+        large: "16px",
+        circle: "9999px",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      maxWidth: {
+        "8xl": "100rem",
+      },
+      screens: {
+        "2xl": "1400px",
       },
       keyframes: {
         "accordion-down": {
@@ -74,4 +108,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};
