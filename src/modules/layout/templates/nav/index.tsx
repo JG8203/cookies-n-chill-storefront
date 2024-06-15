@@ -86,6 +86,14 @@ export default async function Nav() {
               About Us
             </LocalizedClientLink>
 
+            <LocalizedClientLink
+              className="hover:text-ui-fg-base font-raleway uppercase"
+              href="/track-order"
+              data-testid="nav-about-us-link"
+            >
+              Track Order
+            </LocalizedClientLink>
+
 
             <LocalizedClientLink
               className="hover:text-ui-fg-base font-raleway uppercase"
