@@ -1,4 +1,5 @@
 import { Github } from "@medusajs/icons"
+import {ArrowLongRight} from "@medusajs/icons"
 import heroCookies from '@modules/common/icons/heroCookies.png'
 import { Button, Heading } from "@medusajs/ui"
 import Image from 'next/image'
@@ -31,7 +32,7 @@ const Hero = () => {
 
           {/*to change*/}
           <Button variant="secondary">
-            SHOP NOW -{">"}
+            SHOP NOW {<ArrowLongRight/>}
           </Button>
         </a>
           <Image
