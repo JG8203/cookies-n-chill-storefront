@@ -18,7 +18,7 @@ const StoreTemplate = ({
   const pageNumber = page ? parseInt(page) : 1
 
   return (
-    <div className="flex flex-col small:flex-row small:items-start py-6 content-container" data-testid="category-container">
+    <div className="flex flex-col small:flex-row small:items-start py-6 content-container bg-heroBeige" data-testid="category-container">
       <RefinementList sortBy={sortBy || "created_at"} />
       <div className="w-full">
         <div className="flex flex-col items-center justify-center text-6xl text-black font-raleway font-bold hover:text-ui-fg-base" style={{marginBottom : "30px"}}>
