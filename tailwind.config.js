@@ -75,6 +75,11 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontFamily: {
+        'raleway': ['Raleway', 'sans-serif'],
+        'niconne': ['Niconne', 'cursive'],
+        'neuton': ['Neuton', 'serif'],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
