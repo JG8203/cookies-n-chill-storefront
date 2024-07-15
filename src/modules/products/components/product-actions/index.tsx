@@ -14,6 +14,7 @@ import OptionSelect from "@modules/products/components/option-select"
 
 import MobileActions from "../mobile-actions"
 import ProductPrice from "../product-price"
+import CalendarWidget from "@modules/checkout/components/calendar-selector/CalendarWidget"
 
 type ProductActionsProps = {
   product: PricedProduct
@@ -35,6 +36,7 @@ export default function ProductActions({
 }: ProductActionsProps) {
   const [options, setOptions] = useState<Record<string, string>>({})
   const [isAdding, setIsAdding] = useState(false)
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
 
   const countryCode = useParams().countryCode as string
 
@@ -120,9 +122,14 @@ export default function ProductActions({
 
   const inView = useIntersection(actionsRef, "0px")
 
+  const handleDateSelect = (date: Date) => {
+    setSelectedDate(date);
+    // You can add additional logic here, such as checking availability for the selected date
+  };
+
   // add the selected variant to the cart
   const handleAddToCart = async () => {
-    if (!variant?.id) return null
+    if (!variant?.id || !selectedDate) return null
 
     setIsAdding(true)
 
@@ -130,6 +137,7 @@ export default function ProductActions({
       variantId: variant.id,
       quantity: 1,
       countryCode,
+      metadata: { selectedDate: selectedDate.toISOString() },
     })
 
     setIsAdding(false)
@@ -162,9 +170,12 @@ export default function ProductActions({
 
         <ProductPrice product={product} variant={variant} region={region} />
 
+        <CalendarWidget onDateSelect={handleDateSelect} />
+        <Divider />
+
         <Button
           onClick={handleAddToCart}
-          disabled={!inStock || !variant || !!disabled || isAdding}
+          disabled={!inStock || !variant || !!disabled || isAdding || !selectedDate}
           variant="primary"
           className="w-full h-10"
           isLoading={isAdding}
@@ -174,6 +185,8 @@ export default function ProductActions({
             ? "Select variant"
             : !inStock
             ? "Out of stock"
+            : !selectedDate
+            ? "Select a date"
             : "Add to cart"}
         </Button>
         <MobileActions
