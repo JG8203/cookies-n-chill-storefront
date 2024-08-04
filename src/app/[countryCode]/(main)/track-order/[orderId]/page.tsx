@@ -65,7 +65,6 @@ interface Order {
   gift_card_tax_total: number;
   returnable_items: LineItem[]; // Expandable
 }
-
 const formatStatus = (status: string) => {
   return status.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 };
@@ -79,6 +78,32 @@ const formatDate = (dateString: string) => {
     year: 'numeric', month: 'long', day: 'numeric',
     hour: '2-digit', minute: '2-digit', hour12: true
   });
+};
+
+const getDeliveryDateRange = (currentDate: Date = new Date()): string => {
+  const dayOfWeek = currentDate.getDay();
+  let startDate = new Date(currentDate);
+  let endDate = new Date(currentDate);
+
+  if (dayOfWeek <= 1) { // Sunday, Monday
+    startDate.setDate(currentDate.getDate() + (4 - dayOfWeek)); // This Thursday
+    endDate.setDate(currentDate.getDate() + (6 - dayOfWeek)); // This Saturday
+  } else if (dayOfWeek <= 3) { // Tuesday, Wednesday
+    startDate.setDate(currentDate.getDate() + (4 - dayOfWeek) + 7); // Next Thursday
+    endDate.setDate(currentDate.getDate() + (6 - dayOfWeek) + 7); // Next Saturday
+  } else if (dayOfWeek === 4) { // Thursday
+    startDate.setDate(currentDate.getDate() + 2); // This Saturday
+    endDate.setDate(currentDate.getDate() + 2); // This Saturday
+  } else { // Friday, Saturday
+    startDate.setDate(currentDate.getDate() + ((4 + 7) - dayOfWeek)); // Next Thursday
+    endDate.setDate(currentDate.getDate() + ((6 + 7) - dayOfWeek)); // Next Saturday
+  }
+
+  const formatShortDate = (date: Date) => {
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  };
+
+  return `${formatShortDate(startDate)} - ${formatShortDate(endDate)}`;
 };
 
 async function getOrderData(orderId: string): Promise<{ order: Order } | null> {
@@ -98,6 +123,7 @@ export default async function OrderDetailsPage({ params }: { params: { orderId: 
   }
 
   const { order } = orderData;
+  const deliveryDateRange = getDeliveryDateRange();
 
   return (
     <main className="container mx-auto p-8 font-raleway bg-heroBeige text-brownColor">
@@ -112,11 +138,11 @@ export default async function OrderDetailsPage({ params }: { params: { orderId: 
             <p><span className="font-semibold">Status:</span> {formatStatus(order.status)}</p>
             <p><span className="font-semibold">Fulfillment Status:</span> {formatStatus(order.fulfillment_status)}</p>
             <p><span className="font-semibold">Payment Status:</span> {formatStatus(order.payment_status)}</p>
+            <p><span className="font-semibold">Expected Delivery:</span> {deliveryDateRange}</p>
           </div>
           <div>
             <h2 className="text-2xl font-neuton mb-4 text-darkPink">Customer Information</h2>
             <p><span className="font-semibold">Email:</span> {order.email}</p>
-            {/* Add more customer details here if available */}
           </div>
         </div>
         
