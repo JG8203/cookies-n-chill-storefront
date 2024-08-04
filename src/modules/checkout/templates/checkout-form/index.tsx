@@ -13,31 +13,24 @@ import { CartWithCheckoutStep } from "types/global"
 
 export default async function CheckoutForm() {
   const cartId = cookies().get("_medusa_cart_id")?.value
-
   if (!cartId) {
     return null
   }
-
   // create payment sessions and get cart
   const cart = (await createPaymentSessions(cartId).then(
     (cart) => cart
   )) as CartWithCheckoutStep
-
   if (!cart) {
     return null
   }
-
   cart.checkout_step = cart && getCheckoutStep(cart)
-
   // get available shipping methods
   const availableShippingMethods = await listCartShippingMethods(cart.id).then(
     (methods) => methods?.filter((m) => !m.is_return)
   )
-
   if (!availableShippingMethods) {
     return null
   }
-
   // get customer if logged in
   const customer = await getCustomer()
 
@@ -47,18 +40,15 @@ export default async function CheckoutForm() {
         <div>
           <Addresses cart={cart} customer={customer} />
         </div>
-
         <div>
           <Shipping
             cart={cart}
             availableShippingMethods={availableShippingMethods}
           />
         </div>
-
         <div>
           <Payment cart={cart} />
         </div>
-
         <div>
           <Review cart={cart} />
         </div>
