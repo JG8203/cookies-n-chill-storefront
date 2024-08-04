@@ -10,6 +10,7 @@ import OrderDetails from "@modules/order/components/order-details"
 import OrderSummary from "@modules/order/components/order-summary"
 import ShippingDetails from "@modules/order/components/shipping-details"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import DeliveryDate from "../components/delivery-date"
 
 type OrderDetailsTemplateProps = {
   order: Order
@@ -38,7 +39,10 @@ const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
         <Items items={order.items} region={order.region} />
         <ShippingDetails order={order} />
         <OrderSummary order={order} />
+        <DeliveryDate order={order}/>
         <Help />
+        
+        
       </div>
     </div>
   )
